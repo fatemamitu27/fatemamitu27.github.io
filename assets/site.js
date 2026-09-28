@@ -20,3 +20,15 @@
     Object.keys(map).forEach(function (id) { spy.observe(document.getElementById(id)); });
   }
 })();
+// Hero figure: replay the coding animation on hover / tap.
+(function () {
+  var ex = document.querySelector(".exchange");
+  if (!ex || (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+  var busy = true; setTimeout(function () { busy = false; }, 4800);
+  function replay() {
+    if (busy) return; busy = true;
+    var svg = ex.querySelector("svg"); svg.parentNode.replaceChild(svg.cloneNode(true), svg);
+    setTimeout(function () { busy = false; }, 4800);
+  }
+  ex.addEventListener("mouseenter", replay); ex.addEventListener("click", replay);
+})();
